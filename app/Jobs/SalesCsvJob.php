@@ -8,11 +8,12 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Bus\Batchable;
 use App\Models\Sale;
 
 class SalesCsvJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     
     public $data;
     public $header;
@@ -39,5 +40,10 @@ class SalesCsvJob implements ShouldQueue
             $saleData = array_combine($this->header, $sale);
             Sale::create($saleData);
         }
+    }
+
+    public function failed(Throwable $exception)
+    {
+        // Send user notification of failure, etc... we can use this to send a notification to the user that a job has failed
     }
 }
