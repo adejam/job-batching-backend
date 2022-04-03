@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\controllers\SaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get(
-    '/', function () {
-        return view('welcome');
-    }
-);
+Route::get('/', [SalesController::class, 'index']);
+
+Route::get('/upload-file', function () {
+    return view('upload-file');
+});
+
+Route::post('/upload', [SaleController::class, 'upload']);
