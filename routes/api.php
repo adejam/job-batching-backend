@@ -1,7 +1,8 @@
 <?php
 
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\controllers\SaleController;
 
 Route::middleware('auth:sanctum')->get(
     '/user',
@@ -10,15 +11,6 @@ Route::middleware('auth:sanctum')->get(
     }
 );
 
-Route::get('/upload-file', function () {
-    // return view('upload-file');
-    return 'please upload file';
-});
-
-Route::post('/upload', function () {
-    if (request()->has('mycsv')) {
-        return request()->mycsv;
-    }
-
-    return 'please upload file';
-});
+Route::post('/upload', [SaleController::class, 'upload']);
+Route::get('/batch', [SaleController::class, 'batch']);
+Route::get('/batch/in-progress', [SaleController::class, 'batchInProgress']);
