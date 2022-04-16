@@ -35,10 +35,9 @@ class SaleController extends Controller
         return 'Please upload a CSV file';
     }
 
-    public function batch()
+    public function batch($id)
     {
-        $batchId = request('id');
-        return Bus::findBatch($batchId);
+        return Bus::findBatch($id);
     }
 
     public function batchInProgress()

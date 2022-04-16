@@ -14,7 +14,7 @@ use App\Http\controllers\SaleController;
 |
 */
 
-Route::get('/', [SalesController::class, 'index']);
+Route::get('/', [SaleController::class, 'index']);
 
 Route::get('/upload-file', function () {
     return view('upload-file');

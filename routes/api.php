@@ -12,5 +12,5 @@ Route::middleware('auth:sanctum')->get(
 );
 
 Route::post('/upload', [SaleController::class, 'upload']);
-Route::get('/batch', [SaleController::class, 'batch']);
 Route::get('/batch/in-progress', [SaleController::class, 'batchInProgress']);
+Route::get('/batch/{id}', [SaleController::class, 'batch']);
